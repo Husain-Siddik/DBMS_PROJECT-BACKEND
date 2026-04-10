@@ -21,7 +21,8 @@ export const verifyToken = (req, res, next) => {
 // Admin check
 export const isAdmin = (req, res, next) => {
     if (req.user.role !== "admin") {
-        return res.status(403).send("Only admin allowed");
+
+        return res.status(403).send("Only admin allowed..");
     }
     next();
 };

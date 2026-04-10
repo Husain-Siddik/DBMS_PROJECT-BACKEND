@@ -1,4 +1,4 @@
-import db from "./db.js"; // ⚠️ same folder হলে ./db.js
+import db from "./db.js";
 
 const initDB = () => {
   db.query(`
@@ -49,6 +49,42 @@ const initDB = () => {
                     INDEX idx_type_status_location (type, status, location)
                   )
                 `);
+
+
+        //veterinarians table  
+
+        db.query(
+          `
+         CREATE TABLE veterinarians (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(100) NOT NULL,
+         clinic_name VARCHAR(100),
+         address VARCHAR(255) NOT NULL,
+         phone VARCHAR(20) NOT NULL,
+         email VARCHAR(100),
+         status ENUM('active','inactive') DEFAULT 'active',
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     )`
+
+        );
+
+        //rescue team table
+
+        db.query(
+          `
+          CREATE TABLE rescue_teams (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(100) NOT NULL,
+          service_area VARCHAR(100) NOT NULL,
+          phone VARCHAR(20) NOT NULL,
+          description VARCHAR(255),
+          status ENUM('active','inactive') DEFAULT 'active',
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          )
+          `
+        );
+
+
 
         db.query(
           "INSERT INTO migrations (name) VALUES ('init_tables')"

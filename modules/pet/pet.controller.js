@@ -6,6 +6,13 @@ const getAllPets = async (req, res) => {
 
         const pets = await petservice.getAllPetsService()
 
+        if (pets.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "no pets found"
+            })
+        }
+
         res.status(200).json({
             success: true,
             data: pets,
@@ -14,7 +21,6 @@ const getAllPets = async (req, res) => {
 
 
     } catch (error) {
-        console.error("Get All Pets Error:", error);
         res.status(500).json({
             error: error.message || "Something went wrong while getting All pets "
         });
@@ -83,7 +89,7 @@ const getSingelPetById = async (req, res) => {
 
         const result = await petservice.getSingelPetServiceById(id)
 
-        if (!result) {
+        if (result.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: "pet data not found "
