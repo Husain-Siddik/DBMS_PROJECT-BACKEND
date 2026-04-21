@@ -65,16 +65,20 @@ const updateRescueTeamService = (id, data) => {
 
 const deleteRescueTeamService = (id) => {
     return new Promise((resolve, reject) => {
+
         const sql = `DELETE FROM rescue_teams WHERE id=?`;
 
         db.query(sql, [id], (err, result) => {
             if (err) return reject(err);
 
-            if (result.affectedRows === 0) return resolve(null);
+            if (result.affectedRows === 0) {
+                return resolve(null);
+            }
 
             resolve({
                 success: true,
-                message: "Rescue team deleted successfully"
+                message: "Rescue team deleted successfully",
+                deletedId: id
             });
         });
     });

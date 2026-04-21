@@ -10,6 +10,8 @@ const router = express.Router()
 // private  routes 
 router.post('/', verifyToken, petController.createPetController)
 router.get('/my-pets', verifyToken, petController.getPetByUserId)
+router.patch("/update-pet/:id", verifyToken, petController.updatePetController);
+router.delete("/:id", verifyToken, petController.deletePetById);
 
 
 //public routes 

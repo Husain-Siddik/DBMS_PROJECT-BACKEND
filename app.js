@@ -4,6 +4,7 @@ import authRoute from './modules/auth/auth.route.js'
 import petRoute from './modules/pet/pet.route.js'
 import { verifyToken } from './middlewars/auth.js';
 import rescueTeamsRouter from './modules/rescueTeams/rescueTeams.route.js';
+import veterinarianRouter from './modules/veterinarian/veterinarian.route.js';
 
 const app = express();
 
@@ -28,6 +29,9 @@ app.use('/api/pets', petRoute);
 
 //rescue teams
 app.use('/api/rescue-team', rescueTeamsRouter)
+
+//
+app.use('/api/veterinary', veterinarianRouter)
 
 
 app.get('/', (req, res) => {

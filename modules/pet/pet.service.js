@@ -79,9 +79,75 @@ const getUserPetServiceByUserid = (user_id) => {
 
 }
 
+const deletePetServiceById = (id) => {
+    return new Promise((resolve, reject) => {
+
+        const sql = `DELETE FROM pets WHERE id = ?`;
+
+        db.query(sql, [id], (err, result) => {
+
+            //  DB error
+            if (err) {
+                return reject(err);
+            }
+
+            //  not found
+            if (result.affectedRows === 0) {
+                return resolve({
+                    success: false,
+                    message: "Rescue team not found"
+                });
+            }
+
+            // success
+            resolve({
+                success: true,
+                message: "Rescue team deleted successfully"
+            });
+        });
+    });
+};
+
+
+const updatePetService = (id, userId, data) => {
+    return new Promise((resolve, reject) => {
+
+        const sql = `
+            UPDATE pets
+            SET name=?, type=?, location=?, image=?, description=?, status=?
+            WHERE id=? AND user_id=?
+        `;
+
+        db.query(sql, [
+            data.name,
+            data.type,
+            data.location,
+            data.image || null,
+            data.description,
+            data.status,
+            id,
+            userId
+        ], (err, result) => {
+
+            if (err) return reject(err);
+
+            if (result.affectedRows === 0) return resolve(null);
+
+            resolve({
+                success: true,
+                message: "Pet updated successfully",
+                data: { id, ...data }
+            });
+        });
+    });
+};
+
+
 export const petservice = {
     createPetservice,
     getAllPetsService,
     getSingelPetServiceById,
-    getUserPetServiceByUserid
+    getUserPetServiceByUserid,
+    deletePetServiceById,
+    updatePetService
 }

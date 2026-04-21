@@ -109,10 +109,8 @@ const deleteRescueTeamController = async (req, res) => {
             });
         }
 
-        res.json({
-            success: true,
-            message: result.message
-        });
+
+        res.json(result);
 
     } catch (error) {
         console.error("Delete Error:", error);

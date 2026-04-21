@@ -145,10 +145,114 @@ const getPetByUserId = async (req, res) => {
 
 }
 
+const deletePetById = async (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const user_id = req.user.id
+
+    if (!id || isNaN(id)) {
+        return res.status(400).json({
+            success: false,
+            error: "Invalid pet id"
+        });
+    }
+
+    try {
+
+        const result = await petservice.deletePetServiceById(id);
+
+
+        if (!result || result.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Pet not found"
+            });
+        }
+
+
+        res.status(200).json({
+            success: true,
+            message: "Pet deleted successfully"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong",
+            error: error.message || "Delete failed"
+        });
+    }
+};
+
+const updatePetController = async (req, res) => {
+
+    const id = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    const {
+        name,
+        type,
+        location,
+        image,
+        description,
+        status
+    } = req.body;
+
+    //  ID validation
+    if (!id || isNaN(id)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid pet ID"
+        });
+    }
+
+    try {
+        const data = {
+            name,
+            type,
+            location,
+            image,
+            description,
+            status
+        }
+
+        const result = await petservice.updatePetService(id, userId, data);
+
+        // not found / unauthorized
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Pet not found or unauthorized"
+            });
+        }
+
+
+        res.status(200).json({
+            success: true,
+            message: "Pet updated successfully",
+            data: result
+        });
+
+    } catch (error) {
+
+        console.error("Update Error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong",
+            error: error.message
+        });
+    }
+};
 
 export default {
     getAllPets,
     createPetController,
     getSingelPetById,
-    getPetByUserId
+    getPetByUserId,
+    deletePetById,
+    updatePetController
+
 }
