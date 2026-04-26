@@ -33,6 +33,17 @@ It demonstrates how a DBMS project works in a real-world scenario with proper ba
 ## 📂 Project Structure
 
 
+ ## DBMS_PROJECT-BACKEND/
+
+ - config : Database connection and configuration files
+- controllers :Business logic for handling requests
+- models :Database schemas / tables structure
+-routes: API route definitions
+-middleware: Authentication, validation, and custom middleware
+-utils: Helper functions (if any)
+-server.js : Main entry point of the application
+- app.js :Express app setup (if used)
+- package.json :Project dependencies and scripts
 
 
 ---
