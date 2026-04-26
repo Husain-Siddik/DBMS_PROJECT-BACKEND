@@ -31,3 +31,27 @@ It demonstrates how a DBMS project works in a real-world scenario with proper ba
 ---
 
 ## 📂 Project Structure
+
+
+
+
+---
+
+## ⚙️ Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/Husain-Siddik/DBMS_PROJECT-BACKEND.git
+
+# Go to project directory
+cd DBMS_PROJECT-BACKEND
+
+# Install dependencies
+npm install
+
+# Create .env file and add:
+PORT=5000
+DB_URI=your_database_connection_string
+
+# Run the server
+npm start
