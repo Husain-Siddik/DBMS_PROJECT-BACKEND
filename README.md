@@ -12,8 +12,8 @@ This backend system is developed to manage core database operations efficiently.
 It demonstrates how a DBMS project works in a real-world scenario with proper backend architecture.
 
 ### Key Features:
-- 🔐 User authentication system (if implemented)
-- 📊 CRUD operations (Create, Read, Update, Delete)
+- 🔐 User authentication system 
+- 📊 CRUD operations 
 - 🗄️ Database integration
 - ⚙️ RESTful API structure
 - 🧠 Clean and modular backend design
@@ -22,12 +22,11 @@ It demonstrates how a DBMS project works in a real-world scenario with proper ba
 
 ## 🛠️ Tech Stack
 
-- Node.js (or your backend tech)
+- Node.js 
 - Express.js
-- MySQL / MongoDB (update according to your project)
+- MySQL / MongoDB 
 - REST API
-- Git & GitHub
-
+- 
 ---
 
 ## 📂 Project Structure
@@ -40,9 +39,9 @@ It demonstrates how a DBMS project works in a real-world scenario with proper ba
 - models :Database schemas / tables structure
 -routes: API route definitions
 -middleware: Authentication, validation, and custom middleware
--utils: Helper functions (if any)
+-utils: Helper functions 
 -server.js : Main entry point of the application
-- app.js :Express app setup (if used)
+- app.js :Express app setup 
 - package.json :Project dependencies and scripts
 
 
